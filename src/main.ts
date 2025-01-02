@@ -4,13 +4,28 @@ import { initPWA } from "./pwa.ts";
 import Controller from "./ui/Controller.ts";
 import Timer from "./model/Timer.ts";
 
+function displayErrorMessage(message: string) {
+  const errorMessage = document.querySelector("#error-message");
+  if (errorMessage === null) {
+    throw new Error("Error message not found");
+  }
+  const body = errorMessage.querySelector(".message-body");
+  if (body) {
+    body.innerHTML = message;
+  }
+  errorMessage.classList.toggle("is-hidden");
+}
+
 export default function main() {
   const app = document.querySelector<HTMLDivElement>("#app");
   if (app === null) {
-    throw new Error("app not found");
+    displayErrorMessage("app not found");
+    return;
   }
 
-  app.innerHTML = `
+  app.insertAdjacentHTML(
+    "afterbegin",
+    `
     <main class="section">
       <div class="container">
         <div class="columns is-mobile is-multiline">
@@ -34,8 +49,8 @@ export default function main() {
               <button class="button is-fullwidth" type="submit">Lancer le décompte</button>
             </form>
             <div id="timer" class="is-hidden has-text-grey-light">
-              <div id="clock"></div>
-              <div id="money"></div>
+              <div id="clock">00:00:00</div>
+              <div id="money">00.00 €</div>
             </div>
           </div>
         </div>
@@ -57,8 +72,12 @@ export default function main() {
             </button>
         </div>
       </div>
+      <div id="error-message" class="message is-danger is-hidden">
+        <div class="message-body"></div>
+      </div>
     </main>
-`;
+`
+  );
 
   const formInit = document.querySelector("#init");
   const amountPerHourInput = document.querySelector("#hourlyCost");
@@ -97,3 +116,5 @@ export default function main() {
 
   initPWA(app);
 }
+
+export { displayErrorMessage };

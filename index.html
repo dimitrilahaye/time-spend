@@ -13,13 +13,13 @@
   <body data-theme="dark" class="has-background-black-bis">
     <div id="app"></div>
     <script type="module">
-      import main from "./src/main.ts";
+      import main, { displayErrorMessage } from "./src/main.ts";
 
       document.addEventListener("DOMContentLoaded", () => {
         try {
           main();
         } catch (e) {
-          console.info(e.message ?? "Une erreur est survenue.");
+          displayErrorMessage(e.message ?? "Une erreur est survenue.");
         }
       });
     </script>
