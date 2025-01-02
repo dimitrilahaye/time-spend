@@ -1,25 +1,19 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import appLogo from '/favicon.svg'
-import { setupCounter } from './counter.ts'
-import { initPWA } from './pwa.ts'
+import "./style.css";
+import "./pwa.css";
+import { initPWA } from "./pwa.ts";
+import Controller from "./model/ui/Controller.ts";
+import Timer from "./model/Timer.ts";
 
-const app = document.querySelector<HTMLDivElement>('#app')!
-app.innerHTML = `
+export default function main() {
+  const app = document.querySelector<HTMLDivElement>("#app");
+  if (app === null) {
+    throw new Error("app not found");
+  }
+
+  app.innerHTML = `
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${appLogo}" class="logo" alt="App logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>time-$pend</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
+    <div id="clock"></div>
+    <div id="money"></div>
   </div>
   <div
     id="pwa-toast"
@@ -38,8 +32,15 @@ app.innerHTML = `
         </button>
     </div>
   </div>
-`
+`;
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+  const controller = new Controller(
+    new Timer({
+      amountPerHour: 15,
+      startTime: new Date("2025-01-02T18:20:00").getTime(),
+    })
+  );
+  controller.start();
 
-initPWA(app)
+  initPWA(app);
+}
