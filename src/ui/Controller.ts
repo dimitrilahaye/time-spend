@@ -1,6 +1,6 @@
-import Clock from "../counter/Clock";
-import Money from "../counter/Money";
-import type Timer from "../Timer";
+import Clock from "../model/counter/Clock";
+import Money from "../model/counter/Money";
+import type Timer from "../model/Timer";
 
 export default class Controller {
   private readonly clock: Clock;
