@@ -1,11 +1,11 @@
 export abstract class Observable<T> {
   private observers: ((data: T) => void)[] = [];
 
-  add(callback: (data: T) => void): void {
+  addObserver(callback: (data: T) => void): void {
     this.observers.push(callback);
   }
 
-  remove(callback: (data: T) => void): void {
+  removeObserver(callback: (data: T) => void): void {
     this.observers = this.observers.filter((obs) => obs !== callback);
   }
 

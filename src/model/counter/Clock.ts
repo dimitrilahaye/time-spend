@@ -1,3 +1,4 @@
+import type Timer from "../Timer";
 import { Counter } from "./Counter";
 
 type ClockData = {
@@ -11,13 +12,15 @@ export default class Clock extends Counter<ClockData> {
   private minutes = 0;
   private hours = 0;
 
-  constructor(startTime = 0) {
-    super(startTime);
-    if (startTime > 0) {
-      this.hours = Math.floor(this.elapsedSeconds / 3600);
-      this.minutes = Math.floor((this.elapsedSeconds % 3600) / 60);
-      this.seconds = this.elapsedSeconds % 60;
-    }
+  constructor(timer: Timer) {
+    super();
+    const [hours, minutes, seconds] = timer
+      .getCurrentClock()
+      .split(":")
+      .map(Number);
+    this.hours = hours;
+    this.minutes = minutes;
+    this.seconds = seconds;
   }
 
   update(): void {
@@ -31,6 +34,14 @@ export default class Clock extends Counter<ClockData> {
       this.hours++;
     }
 
+    this.notify({
+      hours: this.hours,
+      minutes: this.minutes,
+      seconds: this.seconds,
+    });
+  }
+
+  display() {
     this.notify({
       hours: this.hours,
       minutes: this.minutes,
