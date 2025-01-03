@@ -191,13 +191,62 @@ function getFormInit() {
   };
 }
 
-export {
-  getErrorMessage,
-  getApp,
-  getAmountPerHourValue,
-  getTimerDisplay,
-  getControlButton,
-  getStop,
-  getTimerContainer,
-  getFormInit,
-};
+function ui() {
+  return {
+    getAppElement: () => {
+      const $app = getApp();
+      return $app.element;
+    },
+    initAppDom: () => {
+      const $app = getApp();
+      $app.initDom();
+    },
+    displayErrorMessage: (message: string) => {
+      const $errorMessage = getErrorMessage();
+      $errorMessage.displayMessage(message);
+    },
+    setPlayerOnPause: () => {
+      const $controlButton = getControlButton();
+      const $timerDisplay = getTimerDisplay();
+      $controlButton.pause();
+      $timerDisplay.pause();
+    },
+    setPlayerOnPlay: () => {
+      const $controlButton = getControlButton();
+      const $timerDisplay = getTimerDisplay();
+      $controlButton.play();
+      $timerDisplay.play();
+    },
+    controlButtonClickHandler: (handler: () => void) => {
+      const $controlButton = getControlButton();
+      $controlButton.clickHandler(handler);
+    },
+    controlButtonIsPaused: () => {
+      const $controlButton = getControlButton();
+      return $controlButton.isPaused();
+    },
+    controlButtonIsPlayed: () => {
+      const $controlButton = getControlButton();
+      return $controlButton.isPlayed();
+    },
+    setStopButtonClickHandler: (handler: () => void) => {
+      const $stop = getStop();
+      $stop.clickHandler(handler);
+    },
+    showTimerContainer: () => {
+      const $timerContainer = getTimerContainer();
+      $timerContainer.show();
+    },
+    hideFormInit: () => {
+      const $formInit = getFormInit();
+      $formInit.hide();
+    },
+    formInitSubmitHandler: (handler: (e: Event) => void) => {
+      const $formInit = getFormInit();
+      $formInit.submitHandler(handler);
+    },
+    getAmountPerHourValue,
+  };
+}
+
+export default ui();
