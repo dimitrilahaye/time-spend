@@ -221,11 +221,11 @@ function ui() {
       const $controlButton = getControlButton();
       $controlButton.clickHandler(handler);
     },
-    controlButtonIsPaused: () => {
+    isPlayerOnPlay: () => {
       const $controlButton = getControlButton();
       return $controlButton.isPaused();
     },
-    controlButtonIsPlayed: () => {
+    isPlayerOnPause: () => {
       const $controlButton = getControlButton();
       return $controlButton.isPlayed();
     },
