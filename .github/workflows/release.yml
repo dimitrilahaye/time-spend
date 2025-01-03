@@ -34,7 +34,22 @@ jobs:
         git config --local user.name "github-actions[bot]"
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
 
+    - name: Check for release notes
+      run: |
+        RELEASE_NOTES="$(npm run release -- --dry-run | awk 'BEGIN { flag=0 } /^---$/ { if (flag == 0) { flag=1 } else { flag=2 }; next } flag == 1')"
+        echo "RELEASE_NOTES: $RELEASE_NOTES"
+        # Don't release if there are no changes
+        if [ "$(echo "$RELEASE_NOTES" | wc -l)" -eq 1 ] ; then
+            echo "::warning::This release would have no release notes. Does it include changes?"
+            echo "   - You must have at least one fix / feat commit to generate release notes"
+            echo "*** STOPPING RELEASE PROCESS ***"
+            echo "RELEASE_NOTES_AVAILABLE=false" >> $GITHUB_ENV
+        else
+            echo "RELEASE_NOTES_AVAILABLE=true" >> $GITHUB_ENV
+        fi
+
     - name: Bump version and generate changelog
+      if: success() && env.RELEASE_NOTES_AVAILABLE == 'true'
       run: |
         npm run release
         git push --follow-tags origin main
