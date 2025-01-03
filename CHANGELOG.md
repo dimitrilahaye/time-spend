@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.4](https://github.com/dimitrilahaye/time-spend/compare/v0.0.3...v0.0.4) (2025-01-03)
+
+
+### 🛠️ Maintenance
+
+* **vite:** update config for github pages PWA ([99a5e46](https://github.com/dimitrilahaye/time-spend/commit/99a5e4623594b7026e9e4dcd7548fb2dd944c049))
+
 ## [0.0.3](https://github.com/dimitrilahaye/time-spend/compare/v0.0.2...v0.0.3) (2025-01-03)
 
 
