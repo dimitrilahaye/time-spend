@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.14](https://github.com/dimitrilahaye/time-spend/compare/v0.0.13...v0.0.14) (2025-01-03)
+
+
+### 🐛 Bug Fixes
+
+* **ux:** issue on app reload ([e3fc0d7](https://github.com/dimitrilahaye/time-spend/commit/e3fc0d7499a5b0b8a0ab4df952415cff8475882d))
+
 ## [0.0.13](https://github.com/dimitrilahaye/time-spend/compare/v0.0.12...v0.0.13) (2025-01-03)
 
 
