@@ -5,64 +5,36 @@ import Controller from "./ui/Controller.ts";
 import Timer from "./model/Timer.ts";
 import LocalStorage from "./core/LocalStorage.ts";
 import type Storage from "./ports/Storage.ts";
-import {
-  getAmountPerHourValue,
-  getApp,
-  getControlButton,
-  getErrorMessage,
-  getFormInit,
-  getStop,
-  getTimerContainer,
-  getTimerDisplay,
-} from "./ui/elements.ts";
+import ui from "./ui/elements.ts";
 
 function displayErrorMessage(message: string) {
-  const $errorMessage = getErrorMessage();
-  $errorMessage.displayMessage(message);
-}
-
-function pause() {
-  const $timerDisplay = getTimerDisplay();
-  const $controlButton = getControlButton();
-  $controlButton.pause();
-  $timerDisplay.pause();
-}
-
-function play() {
-  const $timerDisplay = getTimerDisplay();
-  const $controlButton = getControlButton();
-  $controlButton.play();
-  $timerDisplay.play();
+  ui.displayErrorMessage(message);
 }
 
 function startTimer(timer: Timer, storage: Storage) {
-  const $controlButton = getControlButton();
-  const $stop = getStop();
-  const $timerContainer = getTimerContainer();
-  const $formInit = getFormInit();
-  $formInit.hide();
+  ui.hideFormInit();
 
   const controller = new Controller(timer, storage);
   if (timer.getPausedAt()) {
     controller.display();
-    pause();
+    ui.setPlayerOnPause();
   } else {
     controller.start();
   }
 
-  $timerContainer.show();
+  ui.showTimerContainer();
 
-  $controlButton.clickHandler(() => {
-    if ($controlButton.isPaused()) {
-      pause();
+  ui.controlButtonClickHandler(() => {
+    if (ui.controlButtonIsPaused()) {
+      ui.setPlayerOnPause();
       controller.pause();
-    } else if ($controlButton.isPlayed()) {
-      play();
+    } else if (ui.controlButtonIsPlayed()) {
+      ui.setPlayerOnPlay();
       controller.start();
     }
   });
 
-  $stop.clickHandler(() => {
+  ui.setStopButtonClickHandler(() => {
     storage.restoreTimer();
     location.reload();
   });
@@ -71,18 +43,16 @@ function startTimer(timer: Timer, storage: Storage) {
 export default function main() {
   const storage = new LocalStorage();
 
-  const $app = getApp();
-  $app.initDom();
+  ui.initAppDom();
 
   const timer = storage.getTimer();
   if (timer !== null) {
     startTimer(timer, storage);
   }
 
-  const $formInit = getFormInit();
-  $formInit.submitHandler((e) => {
+  ui.formInitSubmitHandler((e) => {
     e.preventDefault();
-    const amountPerHour = getAmountPerHourValue();
+    const amountPerHour = ui.getAmountPerHourValue();
     if (amountPerHour.length === 0) {
       throw new Error("Invalid form");
     }
@@ -96,7 +66,7 @@ export default function main() {
     startTimer(timer, storage);
   });
 
-  initPWA($app.element);
+  initPWA(ui.getAppElement());
 }
 
 export { displayErrorMessage };
