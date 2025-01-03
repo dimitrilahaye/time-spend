@@ -56,8 +56,9 @@ export default defineConfig({
         lang: "fr",
         name: "time | $pend",
         short_name: "time | $pend",
-        start_url: "/",
-        scope: "/",
+        id: "/time-spend/",
+        start_url: "/time-spend/",
+        scope: "/time-spend/",
         description: "L'app qui vous rappelle que le temps c'est de l'argent",
       },
 
