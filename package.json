@@ -1,7 +1,7 @@
 {
   "name": "time-spend",
   "private": true,
-  "version": "0.0.8",
+  "version": "0.0.9",
   "type": "module",
   "description": "L'app qui vous rappelle que le temps c'est de l'argent",
   "homepage": "https://dimitrilahaye.github.io/time-spend/",
