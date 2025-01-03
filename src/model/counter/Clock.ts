@@ -50,11 +50,10 @@ export default class Clock extends Counter<ClockData> {
     if (timer.isPaused) {
       return;
     }
-    const onStandByAt = timer.onStandByAt;
-    if (onStandByAt === null) {
+    if (timer.onStandByAt === null) {
       return;
     }
-    const elapsedTime = this.getElapsedTimeSinceStandby(onStandByAt);
+    const elapsedTime = this.getElapsedTimeSinceStandby(timer.onStandByAt);
     this.addElapsedTimeToCurrentClock(elapsedTime);
     this.display();
   }

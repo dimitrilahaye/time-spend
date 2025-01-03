@@ -33,11 +33,10 @@ export default class Money extends Counter<MoneyData> {
     if (timer.isPaused) {
       return;
     }
-    const onStandByAt = timer.onStandByAt;
-    if (onStandByAt === null) {
+    if (timer.onStandByAt === null) {
       return;
     }
-    const elapsedTime = this.getElapsedTimeSinceStandby(onStandByAt);
+    const elapsedTime = this.getElapsedTimeSinceStandby(timer.onStandByAt);
     const elapsedTimeInSeconds = elapsedTime / 1000;
 
     this.amount += this.amountPerSecond * elapsedTimeInSeconds;

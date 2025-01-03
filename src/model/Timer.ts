@@ -53,6 +53,10 @@ export default class Timer {
     return this._onStandByAt;
   }
 
+  wasOnStandBy() {
+    return this._onStandByAt !== null;
+  }
+
   defineOnStandByAt() {
     this._onStandByAt = Date.now();
   }

@@ -36,7 +36,16 @@ export default class Controller {
   }
 
   play() {
-    this.start();
+    const currentTimer = this.storage.getTimer();
+    if (currentTimer === null) {
+      return;
+    }
+    if (currentTimer.wasOnStandBy()) {
+      this.exitStandbyFromTimer(currentTimer);
+    }
+    if (!currentTimer.wasOnStandBy()) {
+      this.start();
+    }
     this.saveTimerAsPlayed();
   }
 
@@ -65,11 +74,15 @@ export default class Controller {
     if (currentTimer === null) {
       return;
     }
-    this.clock.exitStandby(currentTimer);
-    this.money.exitStandby(currentTimer);
+    this.exitStandbyFromTimer(currentTimer);
+  }
+
+  private exitStandbyFromTimer(timer: Timer) {
+    this.clock.exitStandby(timer);
+    this.money.exitStandby(timer);
     this.start();
-    currentTimer.removeOnStandByAt();
-    this.storage.saveTimer(Timer.clone(currentTimer));
+    timer.removeOnStandByAt();
+    this.storage.saveTimer(Timer.clone(timer));
   }
 
   private start() {

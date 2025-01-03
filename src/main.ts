@@ -53,6 +53,7 @@ function startTimer(timer: Timer, storage: Storage) {
     controller.display();
     ui.setPlayerOnPause();
   } else {
+    console.info(timer.snapshot);
     controller.play();
   }
 
