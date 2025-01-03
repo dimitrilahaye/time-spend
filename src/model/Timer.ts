@@ -34,7 +34,7 @@ export default class Timer {
     this.isPaused = false;
   }
 
-  getPausedAt() {
+  getIsPaused() {
     return this.isPaused;
   }
 

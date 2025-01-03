@@ -15,22 +15,22 @@ function startTimer(timer: Timer, storage: Storage) {
   ui.hideFormInit();
 
   const controller = new Controller(timer, storage);
-  if (timer.getPausedAt()) {
+  if (timer.getIsPaused()) {
     controller.display();
     ui.setPlayerOnPause();
   } else {
-    controller.start();
+    controller.play();
   }
 
   ui.showTimerContainer();
 
   ui.controlButtonClickHandler(() => {
-    if (ui.controlButtonIsPaused()) {
+    if (ui.isPlayerOnPlay()) {
       ui.setPlayerOnPause();
       controller.pause();
-    } else if (ui.controlButtonIsPlayed()) {
+    } else if (ui.isPlayerOnPause()) {
       ui.setPlayerOnPlay();
-      controller.start();
+      controller.play();
     }
   });
 

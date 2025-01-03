@@ -35,7 +35,7 @@ export default class Controller {
     this.storage.saveTimer(timer);
   }
 
-  start() {
+  play() {
     this.intervalId = setInterval(() => {
       this.clock.update();
       this.money.update();
