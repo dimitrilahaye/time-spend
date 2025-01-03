@@ -3,7 +3,7 @@ import ClockDisplay from "../model/ClockDisplay";
 import Clock from "../model/counter/Clock";
 import Money from "../model/counter/Money";
 import MoneyDisplay from "../model/MoneyDisplay";
-import type Timer from "../model/Timer";
+import Timer from "../model/Timer";
 
 export default class Controller {
   private readonly storage: Storage;
@@ -32,28 +32,60 @@ export default class Controller {
     this.clock.addObserver(this.updateClockElement.bind(this));
     this.money.addObserver(this.updateMoneyElement.bind(this));
 
-    this.storage.saveTimer(timer);
+    this.storage.saveTimer(Timer.clone(timer));
   }
 
   play() {
-    this.intervalId = setInterval(() => {
-      this.clock.update();
-      this.money.update();
-    }, 1000);
-
+    this.start();
     this.saveTimerAsPlayed();
   }
 
   pause() {
-    clearInterval(this.intervalId);
-    this.intervalId = undefined;
-
+    this.stop();
     this.saveTimerAsPaused();
   }
 
   display() {
     this.clock.display();
     this.money.display();
+  }
+
+  defineOnStandby() {
+    const currentTimer = this.storage.getTimer();
+    if (currentTimer === null) {
+      return;
+    }
+    this.stop();
+    currentTimer.defineOnStandByAt();
+    this.storage.saveTimer(Timer.clone(currentTimer));
+  }
+
+  exitStandby() {
+    const currentTimer = this.storage.getTimer();
+    if (currentTimer === null) {
+      return;
+    }
+    this.clock.exitStandby(currentTimer);
+    this.money.exitStandby(currentTimer);
+    this.start();
+    currentTimer.removeOnStandByAt();
+    this.storage.saveTimer(Timer.clone(currentTimer));
+  }
+
+  private start() {
+    if (this.intervalId) {
+      this.stop();
+    }
+
+    this.intervalId = setInterval(() => {
+      this.clock.update();
+      this.money.update();
+    }, 1000);
+  }
+
+  private stop() {
+    clearInterval(this.intervalId);
+    this.intervalId = undefined;
   }
 
   private updateClockElement(data: {
@@ -77,8 +109,8 @@ export default class Controller {
     if (currentTimer === null) {
       return;
     }
-    currentTimer.setCurrentMoney(this.moneyElement.innerText.replace(" €", ""));
-    this.storage.saveTimer(currentTimer);
+    currentTimer.currentMoney = this.moneyElement.innerText.replace(" €", "");
+    this.storage.saveTimer(Timer.clone(currentTimer));
   }
 
   private saveTimerCurrentClock() {
@@ -86,8 +118,8 @@ export default class Controller {
     if (currentTimer === null) {
       return;
     }
-    currentTimer.setCurrentClock(this.clockElement.innerText);
-    this.storage.saveTimer(currentTimer);
+    currentTimer.currentClock = this.clockElement.innerText;
+    this.storage.saveTimer(Timer.clone(currentTimer));
   }
 
   private saveTimerAsPlayed() {
@@ -95,8 +127,9 @@ export default class Controller {
     if (currentTimer === null) {
       return;
     }
+    currentTimer.removeOnStandByAt();
     currentTimer.setPlayed();
-    this.storage.saveTimer(currentTimer);
+    this.storage.saveTimer(Timer.clone(currentTimer));
   }
 
   private saveTimerAsPaused() {
@@ -105,6 +138,6 @@ export default class Controller {
       return;
     }
     currentTimer.setPaused();
-    this.storage.saveTimer(currentTimer);
+    this.storage.saveTimer(Timer.clone(currentTimer));
   }
 }

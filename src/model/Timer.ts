@@ -2,56 +2,76 @@ export type TimerProps = {
   isPaused: boolean;
   currentClock: string;
   currentMoney: string;
+  onStandByAt: number | null;
   amountPerHour: number;
 };
 
 export default class Timer {
-  private isPaused: boolean;
-  private currentClock: string;
-  private currentMoney: string;
+  private _isPaused: boolean;
+  private _currentClock: string;
+  private _currentMoney: string;
+  private _onStandByAt: number | null;
   public readonly amountPerHour: number;
 
   constructor(props: TimerProps) {
-    this.isPaused = props.isPaused ?? null;
-    this.currentClock = props.currentClock;
-    this.currentMoney = props.currentMoney;
+    this._isPaused = props.isPaused ?? null;
+    this._currentClock = props.currentClock;
+    this._currentMoney = props.currentMoney;
+    this._onStandByAt = props.onStandByAt;
     this.amountPerHour = props.amountPerHour;
   }
 
-  setCurrentClock(clock: string) {
-    this.currentClock = clock;
-  }
-
-  setCurrentMoney(money: string) {
-    this.currentMoney = money;
+  setPlayed() {
+    this._isPaused = false;
   }
 
   setPaused() {
-    this.isPaused = true;
+    this._isPaused = true;
   }
 
-  setPlayed() {
-    this.isPaused = false;
+  get isPaused() {
+    return this._isPaused;
   }
 
-  getIsPaused() {
-    return this.isPaused;
+  get currentClock(): string {
+    return this._currentClock;
   }
 
-  getCurrentMoney() {
-    return this.currentMoney;
+  set currentClock(value: string) {
+    this._currentClock = value;
   }
 
-  getCurrentClock() {
-    return this.currentClock;
+  get currentMoney(): string {
+    return this._currentMoney;
   }
 
-  get snapshot() {
+  set currentMoney(value: string) {
+    this._currentMoney = value;
+  }
+
+  get onStandByAt(): number | null {
+    return this._onStandByAt;
+  }
+
+  defineOnStandByAt() {
+    this._onStandByAt = Date.now();
+  }
+
+  removeOnStandByAt() {
+    this._onStandByAt = null;
+  }
+
+  get snapshot(): TimerProps {
     return {
-      isPaused: this.isPaused,
-      currentClock: this.currentClock,
-      currentMoney: this.currentMoney,
+      isPaused: this._isPaused,
+      currentClock: this._currentClock,
+      currentMoney: this._currentMoney,
+      onStandByAt: this.onStandByAt,
       amountPerHour: this.amountPerHour,
     };
+  }
+
+  static clone(timer: Timer) {
+    return new Timer(timer.snapshot);
   }
 }

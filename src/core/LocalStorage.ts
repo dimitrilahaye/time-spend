@@ -19,6 +19,7 @@ export default class LocalStorage implements Storage {
       currentClock: timer.currentClock,
       currentMoney: timer.currentMoney,
       amountPerHour: Number(timer.amountPerHour.toFixed(2)),
+      onStandByAt: timer.onStandByAt ?? null,
     });
   }
 

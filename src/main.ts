@@ -33,6 +33,7 @@ export default function main() {
       currentClock: "00:00:00",
       currentMoney: "0.00",
       isPaused: false,
+      onStandByAt: null,
     });
     startTimer(timer, storage);
   });
@@ -48,7 +49,7 @@ function startTimer(timer: Timer, storage: Storage) {
   ui.hideFormInit();
 
   const controller = new Controller(timer, storage);
-  if (timer.getIsPaused()) {
+  if (timer.isPaused) {
     controller.display();
     ui.setPlayerOnPause();
   } else {
@@ -70,6 +71,15 @@ function startTimer(timer: Timer, storage: Storage) {
   ui.setStopButtonClickHandler(() => {
     storage.restoreTimer();
     location.reload();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+      controller.defineOnStandby();
+    }
+    if (document.visibilityState === "visible") {
+      controller.exitStandby();
+    }
   });
 }
 

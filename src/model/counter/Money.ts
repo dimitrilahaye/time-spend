@@ -12,7 +12,7 @@ export default class Money extends Counter<MoneyData> {
   constructor(timer: Timer) {
     super();
     this.amountPerSecond = timer.amountPerHour / 60 / 60;
-    this.amount = Number(timer.getCurrentMoney());
+    this.amount = Number(timer.currentMoney);
   }
 
   update(): void {
@@ -27,5 +27,21 @@ export default class Money extends Counter<MoneyData> {
     this.notify({
       amount: this.amount,
     });
+  }
+
+  exitStandby(timer: Timer) {
+    if (timer.isPaused) {
+      return;
+    }
+    const onStandByAt = timer.onStandByAt;
+    if (onStandByAt === null) {
+      return;
+    }
+    const elapsedTime = this.getElapsedTimeSinceStandby(onStandByAt);
+    const elapsedTimeInSeconds = elapsedTime / 1000;
+
+    this.amount += this.amountPerSecond * elapsedTimeInSeconds;
+
+    this.display();
   }
 }
