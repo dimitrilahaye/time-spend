@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.6](https://github.com/dimitrilahaye/time-spend/compare/v0.0.5...v0.0.6) (2025-01-03)
+
+
+### 🛠️ Maintenance
+
+* **release:** 0.0.6 ([0818056](https://github.com/dimitrilahaye/time-spend/commit/0818056a1a228e554948733e0b0d0d88b12709ab))
+* **release:** add script to avoid empty changelog entry ([dbb75dd](https://github.com/dimitrilahaye/time-spend/commit/dbb75dd90147927df67d2a6e2bfc6253c4d31713))
+* **versions:** revert from 0.0.6 to 0.0.5 ([34e056e](https://github.com/dimitrilahaye/time-spend/commit/34e056ea43fbe239d348b8d0182b0e5c304f11eb))
+
 ## [0.0.5](https://github.com/dimitrilahaye/time-spend/compare/v0.0.4...v0.0.5) (2025-01-03)
 
 
