@@ -7,6 +7,39 @@ import LocalStorage from "./core/LocalStorage.ts";
 import type Storage from "./ports/Storage.ts";
 import ui from "./ui/elements.ts";
 
+export default function main() {
+  const storage = new LocalStorage();
+
+  ui.initAppDom();
+
+  const timer = storage.getTimer();
+  if (timer !== null) {
+    startTimer(timer, storage);
+  }
+
+  if (timer === null) {
+    ui.showFormInit();
+  }
+
+  ui.formInitSubmitHandler((e) => {
+    e.preventDefault();
+    const amountPerHour = ui.getAmountPerHourValue();
+    if (amountPerHour.length === 0) {
+      throw new Error("Invalid form");
+    }
+
+    const timer = new Timer({
+      amountPerHour: Number(amountPerHour),
+      currentClock: "00:00:00",
+      currentMoney: "0.00",
+      isPaused: false,
+    });
+    startTimer(timer, storage);
+  });
+
+  initPWA(ui.getAppElement());
+}
+
 function displayErrorMessage(message: string) {
   ui.displayErrorMessage(message);
 }
@@ -38,35 +71,6 @@ function startTimer(timer: Timer, storage: Storage) {
     storage.restoreTimer();
     location.reload();
   });
-}
-
-export default function main() {
-  const storage = new LocalStorage();
-
-  ui.initAppDom();
-
-  const timer = storage.getTimer();
-  if (timer !== null) {
-    startTimer(timer, storage);
-  }
-
-  ui.formInitSubmitHandler((e) => {
-    e.preventDefault();
-    const amountPerHour = ui.getAmountPerHourValue();
-    if (amountPerHour.length === 0) {
-      throw new Error("Invalid form");
-    }
-
-    const timer = new Timer({
-      amountPerHour: Number(amountPerHour),
-      currentClock: "00:00:00",
-      currentMoney: "0.00",
-      isPaused: false,
-    });
-    startTimer(timer, storage);
-  });
-
-  initPWA(ui.getAppElement());
 }
 
 export { displayErrorMessage };

@@ -39,7 +39,7 @@ function getApp() {
           <div class="container">
             <div class="columns is-mobile is-multiline">
               <div class="column is-full">
-                <form id="init">
+                <form class="is-hidden slide-up" id="init">
                   <div class="field is-horizontal">
                     <div class="field-label is-normal">
                       <label class="label has-text-grey-light" for="hourlyCost">Taux horaire</label>
@@ -68,7 +68,7 @@ function getApp() {
                   </div>
                   <button class="button is-fullwidth" type="submit">Lancer le décompte</button>
                 </form>
-                <div id="timer-container" class="is-hidden has-text-grey-light">
+                <div id="timer-container" class="slide-up is-hidden has-text-grey-light">
                   <div class="timer-display">
                   <div id="clock">00:00:00</div>
                   <div class="separator"></div>
@@ -173,7 +173,12 @@ function getTimerContainer() {
   }
 
   return {
-    show: () => timerContainer.classList.remove("is-hidden"),
+    show: () => {
+      timerContainer.classList.remove("is-hidden");
+      // Trick pour forcer le recalcul CSS
+      (timerContainer as HTMLElement).offsetWidth;
+      timerContainer.classList.add("slide-up--show");
+    },
   };
 }
 
@@ -185,6 +190,12 @@ function getFormInit() {
 
   return {
     hide: () => formInit.classList.add("is-hidden"),
+    show: () => {
+      formInit.classList.remove("is-hidden");
+      // Trick pour forcer le recalcul CSS
+      (formInit as HTMLElement).offsetWidth;
+      formInit.classList.add("slide-up--show");
+    },
     submitHandler: (handler: (e: Event) => void) => {
       formInit.addEventListener("submit", handler);
     },
@@ -240,6 +251,10 @@ function ui() {
     hideFormInit: () => {
       const formInit = getFormInit();
       formInit.hide();
+    },
+    showFormInit: () => {
+      const formInit = getFormInit();
+      formInit.show();
     },
     formInitSubmitHandler: (handler: (e: Event) => void) => {
       const formInit = getFormInit();

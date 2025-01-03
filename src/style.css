@@ -10,6 +10,17 @@ header {
   flex-direction: column;
 }
 
+.slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.slide-up--show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .section {
   display: flex;
   justify-content: center;
