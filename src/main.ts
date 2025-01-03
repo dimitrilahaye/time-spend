@@ -6,7 +6,7 @@ import Timer from "./model/Timer.ts";
 import LocalStorage from "./core/LocalStorage.ts";
 import type Storage from "./ports/Storage.ts";
 import {
-  getAmountPerHourInput,
+  getAmountPerHourValue,
   getApp,
   getControlButton,
   getErrorMessage,
@@ -17,36 +17,30 @@ import {
 } from "./ui/elements.ts";
 
 function displayErrorMessage(message: string) {
-  const errorMessage = getErrorMessage();
-  const body = errorMessage.querySelector(".message-body");
-  if (body) {
-    body.innerHTML = message;
-  }
-  errorMessage.classList.toggle("is-hidden");
+  const $errorMessage = getErrorMessage();
+  $errorMessage.displayMessage(message);
 }
 
 function pause() {
-  const timerDisplay = getTimerDisplay();
-  const controlButton = getControlButton();
-  controlButton.classList.remove("button--pause");
-  controlButton.classList.add("button--play");
-  timerDisplay.classList.add("timer-display--pause");
+  const $timerDisplay = getTimerDisplay();
+  const $controlButton = getControlButton();
+  $controlButton.pause();
+  $timerDisplay.pause();
 }
 
 function play() {
-  const timerDisplay = getTimerDisplay();
-  const controlButton = getControlButton();
-  controlButton.classList.remove("button--play");
-  controlButton.classList.add("button--pause");
-  timerDisplay.classList.remove("timer-display--pause");
+  const $timerDisplay = getTimerDisplay();
+  const $controlButton = getControlButton();
+  $controlButton.play();
+  $timerDisplay.play();
 }
 
 function startTimer(timer: Timer, storage: Storage) {
-  const controlButton = getControlButton();
-  const stop = getStop();
-  const timerContainer = getTimerContainer();
-  const formInit = getFormInit();
-  formInit.classList.toggle("is-hidden");
+  const $controlButton = getControlButton();
+  const $stop = getStop();
+  const $timerContainer = getTimerContainer();
+  const $formInit = getFormInit();
+  $formInit.hide();
 
   const controller = new Controller(timer, storage);
   if (timer.getPausedAt()) {
@@ -56,19 +50,19 @@ function startTimer(timer: Timer, storage: Storage) {
     controller.start();
   }
 
-  timerContainer.classList.toggle("is-hidden");
+  $timerContainer.show();
 
-  controlButton.addEventListener("click", () => {
-    if (controlButton.classList.contains("button--pause")) {
+  $controlButton.clickHandler(() => {
+    if ($controlButton.isPaused()) {
       pause();
       controller.pause();
-    } else if (controlButton.classList.contains("button--play")) {
+    } else if ($controlButton.isPlayed()) {
       play();
       controller.start();
     }
   });
 
-  stop.addEventListener("click", () => {
+  $stop.clickHandler(() => {
     storage.restoreTimer();
     location.reload();
   });
@@ -77,100 +71,18 @@ function startTimer(timer: Timer, storage: Storage) {
 export default function main() {
   const storage = new LocalStorage();
 
-  const app = getApp();
-  app.insertAdjacentHTML(
-    "afterbegin",
-    `
-    <main class="section">
-      <header>
-        <nav class="navbar">
-          <div class="navbar-brand">
-            <span class="navbar-item has-text-weight-bold">
-              🕰️ time | $pend
-            </span>
-          </div>
-        </nav>
-      </header>
-      <div class="container">
-        <div class="columns is-mobile is-multiline">
-          <div class="column is-full">
-            <form id="init">
-              <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                  <label class="label has-text-grey-light" for="hourlyCost">Taux horaire</label>
-                </div>
-                <div class="field-body">
-                  <div class="field is-narrow has-addons">
-                    <div class="control">
-                      <input
-                        class="input"
-                        type="number" 
-                        id="hourlyCost" 
-                        name="hourlyCost" 
-                        step="0.01" 
-                        min="0" 
-                        placeholder="ex. 15.35" 
-                        required
-                      />
-                    </div>
-                    <div class="control">
-                      <a class="button is-static">
-                        €
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button class="button is-fullwidth" type="submit">Lancer le décompte</button>
-            </form>
-            <div id="timer-container" class="is-hidden has-text-grey-light">
-              <div class="timer-display">
-              <div id="clock">00:00:00</div>
-              <div class="separator"></div>
-              <div id="money" class="has-text-weight-bold">0.00 €</div>
-              </div>
-              <div class="timer-actions">
-                <button class="controls button button--pause" type="button"></button>
-                <button class="stop button" type="button">Faire un autre décompte</button>
-              </div>
-            </div>
-          </div>
-          <div id="error-message" class="message is-danger is-hidden">
-            <div class="message-body"></div>
-          </div>
-        </div>
-      </div>
-      <div
-        id="pwa-toast"
-        role="alert"
-        aria-labelledby="toast-message"
-      >
-        <div class="message">
-          <span id="toast-message"></span>
-        </div>
-        <div class="buttons">
-            <button id="pwa-refresh" type="button">
-              Reload
-            </button>
-            <button id="pwa-close" type="button">
-              Close
-            </button>
-        </div>
-      </div>
-    </main>
-`
-  );
+  const $app = getApp();
+  $app.initDom();
 
   const timer = storage.getTimer();
   if (timer !== null) {
     startTimer(timer, storage);
   }
 
-  const formInit = getFormInit();
-  formInit.addEventListener("submit", (e) => {
+  const $formInit = getFormInit();
+  $formInit.submitHandler((e) => {
     e.preventDefault();
-    const amountPerHourInput = getAmountPerHourInput();
-    const amountPerHour = (amountPerHourInput as HTMLInputElement).value;
+    const amountPerHour = getAmountPerHourValue();
     if (amountPerHour.length === 0) {
       throw new Error("Invalid form");
     }
@@ -184,7 +96,7 @@ export default function main() {
     startTimer(timer, storage);
   });
 
-  initPWA(app);
+  initPWA($app.element);
 }
 
 export { displayErrorMessage };
