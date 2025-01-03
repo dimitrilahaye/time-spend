@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.13](https://github.com/dimitrilahaye/time-spend/compare/v0.0.12...v0.0.13) (2025-01-03)
+
+
+### ✨ Features
+
+* **ux:** update counters on standby exit ([7437de2](https://github.com/dimitrilahaye/time-spend/commit/7437de21d92f0edc87248047921b3c27e5d015ad))
+
 ## [0.0.12](https://github.com/dimitrilahaye/time-spend/compare/v0.0.11...v0.0.12) (2025-01-03)
 
 
