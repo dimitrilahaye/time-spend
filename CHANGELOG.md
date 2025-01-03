@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.3](https://github.com/dimitrilahaye/time-spend/compare/v0.0.2...v0.0.3) (2025-01-03)
+
+
+### 📚 Documentation
+
+* **readme:** add link to github page ([9a3132a](https://github.com/dimitrilahaye/time-spend/commit/9a3132a0b503ed407587e20fbc8615c9da0dfbfa))
+
 ## [0.0.2](https://github.com/dimitrilahaye/time-spend/compare/v0.0.1...v0.0.2) (2025-01-03)
 
 
