@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.15](https://github.com/dimitrilahaye/time-spend/compare/v0.0.14...v0.0.15) (2025-01-03)
+
+
+### 🐛 Bug Fixes
+
+* **ui:** issue when exit standby on pause ([8591e54](https://github.com/dimitrilahaye/time-spend/commit/8591e544d0046e3e8c291635a5f4d80e97f3bc4f))
+
+
+### 📦 Refactor
+
+* **model:** improve abstractions ([6d19c6d](https://github.com/dimitrilahaye/time-spend/commit/6d19c6dcfc606290929eb9a65ddf8d5f7b9569a2))
+
 ## [0.0.14](https://github.com/dimitrilahaye/time-spend/compare/v0.0.13...v0.0.14) (2025-01-03)
 
 
