@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.11](https://github.com/dimitrilahaye/time-spend/compare/v0.0.4...v0.0.11) (2025-01-03)
+
+
+### 🐛 Bug Fixes
+
+* **ui:** remove naming convention ([31e360e](https://github.com/dimitrilahaye/time-spend/commit/31e360e034724df098dd73b8b06dcfb0489a218d))
+
+
+### 🛠️ Maintenance
+
+* **deps:** update dependency @vite-pwa/assets-generator to ^0.2.6 ([#2](https://github.com/dimitrilahaye/time-spend/issues/2)) ([155fdeb](https://github.com/dimitrilahaye/time-spend/commit/155fdeb69f5b872f37d07fa89040ea691f7c0cbe))
+* **deps:** update dependency sharp to v0.33.5 ([#6](https://github.com/dimitrilahaye/time-spend/issues/6)) ([9657791](https://github.com/dimitrilahaye/time-spend/commit/9657791d804bf552ed917ce22b85f084716d87e9))
+* **deps:** update dependency typescript to ^5.7.2 ([#3](https://github.com/dimitrilahaye/time-spend/issues/3)) ([3d3a5fc](https://github.com/dimitrilahaye/time-spend/commit/3d3a5fc6f27d448e568e4c1b845cbd5a9aa6c199))
+* **deps:** update dependency vite to ^5.4.11 ([#4](https://github.com/dimitrilahaye/time-spend/issues/4)) ([5905cab](https://github.com/dimitrilahaye/time-spend/commit/5905cab87e57f15090053570ef55110483d6b2fa))
+* **deps:** update dependency vite to v6 ([#8](https://github.com/dimitrilahaye/time-spend/issues/8)) ([011b9de](https://github.com/dimitrilahaye/time-spend/commit/011b9deeab90909118d1ec2a79a6551c2a78bdbf))
+* **deps:** update dependency vite-plugin-pwa to ^0.21.1 ([#7](https://github.com/dimitrilahaye/time-spend/issues/7)) ([850913f](https://github.com/dimitrilahaye/time-spend/commit/850913ff938b7d7088458264cbc80ab55ef5a623))
+* **deps:** update peaceiris/actions-gh-pages action to v4 ([#9](https://github.com/dimitrilahaye/time-spend/issues/9)) ([9ff3e66](https://github.com/dimitrilahaye/time-spend/commit/9ff3e6699ff76df7ee55dc34228a09c464c8f02c))
+* **deps:** update workbox monorepo to ^7.3.0 ([#5](https://github.com/dimitrilahaye/time-spend/issues/5)) ([f47c854](https://github.com/dimitrilahaye/time-spend/commit/f47c854357f151853824ff7aeb37ee96631e619a))
+* **release:** 0.0.10 ([8ca9a83](https://github.com/dimitrilahaye/time-spend/commit/8ca9a83d85a573c057c42ea05b415c62b627fbfd))
+* **release:** 0.0.5 ([71848a6](https://github.com/dimitrilahaye/time-spend/commit/71848a6d6880dd365f0d56518036e5e265cb4894))
+* **release:** 0.0.6 ([5d13d58](https://github.com/dimitrilahaye/time-spend/commit/5d13d58662920419f0f0b0713192d67b496da588))
+* **release:** 0.0.6 ([6e050db](https://github.com/dimitrilahaye/time-spend/commit/6e050db1ba858798e96a8b3f053b2a8a73a5e29a))
+* **release:** 0.0.7 ([344c104](https://github.com/dimitrilahaye/time-spend/commit/344c104addefc7f27fd351d563c6b7244444e396))
+* **release:** 0.0.8 ([1740a4c](https://github.com/dimitrilahaye/time-spend/commit/1740a4c10900c7054b196e95a9a9a58b91a1a5ad))
+* **release:** 0.0.9 ([c7e7003](https://github.com/dimitrilahaye/time-spend/commit/c7e7003004d31733609db88e72c3f26fd386abc8))
+* **release:** add script to avoid empty changelog entry ([3612428](https://github.com/dimitrilahaye/time-spend/commit/361242886a80db7fd9e7d436f805ee6d81623ee7))
+* **versions:** revert from 0.0.6 to 0.0.5 ([6474b39](https://github.com/dimitrilahaye/time-spend/commit/6474b39b6ceb987df6ddfb584020b83128a54d75))
+
+
+### 📦 Refactor
+
+* **ui:** better dom logic encapsulation ([7bdb612](https://github.com/dimitrilahaye/time-spend/commit/7bdb61230366e499aca4cd7c85d51b91403cdfbb))
+* **ui:** encapsule dom logic ([9fffacc](https://github.com/dimitrilahaye/time-spend/commit/9fffacccbba82d1c71ada9aeea69c945069ad946))
+* **ui:** far better dom logic encapsulation ([d24def6](https://github.com/dimitrilahaye/time-spend/commit/d24def60996249498fc4859ab973d3de70df974e))
+
 ## [0.0.10](https://github.com/dimitrilahaye/time-spend/compare/v0.0.9...v0.0.10) (2025-01-03)
 
 
