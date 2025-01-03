@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.10](https://github.com/dimitrilahaye/time-spend/compare/v0.0.9...v0.0.10) (2025-01-03)
+
+
+### 🐛 Bug Fixes
+
+* **ui:** remove naming convention ([4523f4e](https://github.com/dimitrilahaye/time-spend/commit/4523f4e5c6e191b6c5e889e4a7500ea32bfa366c))
+
 ## [0.0.9](https://github.com/dimitrilahaye/time-spend/compare/v0.0.8...v0.0.9) (2025-01-03)
 
 
