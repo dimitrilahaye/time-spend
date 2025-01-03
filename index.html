@@ -224,10 +224,11 @@
     <div id="app"></div>
     <script type="module">
       import main, { displayErrorMessage } from "./src/main.ts";
+      import LocalStorage from './src/core/LocalStorage.ts';
 
       document.addEventListener("DOMContentLoaded", () => {
         try {
-          main();
+          main(new LocalStorage());
         } catch (e) {
           displayErrorMessage(e.message ?? "Une erreur est survenue.");
         }

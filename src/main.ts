@@ -3,13 +3,10 @@ import "./style.css";
 import { initPWA } from "./pwa.ts";
 import Controller from "./ui/Controller.ts";
 import Timer from "./model/Timer.ts";
-import LocalStorage from "./core/LocalStorage.ts";
 import type Storage from "./ports/Storage.ts";
 import ui from "./ui/elements.ts";
 
-export default function main() {
-  const storage = new LocalStorage();
-
+export default function main(storage: Storage) {
   ui.initAppDom();
 
   const timer = storage.getTimer();
@@ -28,13 +25,7 @@ export default function main() {
       throw new Error("Invalid form");
     }
 
-    const timer = new Timer({
-      amountPerHour: Number(amountPerHour),
-      currentClock: "00:00:00",
-      currentMoney: "0.00",
-      isPaused: false,
-      onStandByAt: null,
-    });
+    const timer = Timer.initialTimer(Number(amountPerHour));
     startTimer(timer, storage);
   });
 

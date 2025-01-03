@@ -78,4 +78,14 @@ export default class Timer {
   static clone(timer: Timer) {
     return new Timer(timer.snapshot);
   }
+
+  static initialTimer(amountPerHour: number) {
+    return new Timer({
+      amountPerHour: amountPerHour,
+      currentClock: "00:00:00",
+      currentMoney: "0.00",
+      isPaused: false,
+      onStandByAt: null,
+    });
+  }
 }
