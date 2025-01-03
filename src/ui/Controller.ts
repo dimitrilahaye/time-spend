@@ -80,7 +80,12 @@ export default class Controller {
   private exitStandbyFromTimer(timer: Timer) {
     this.clock.exitStandby(timer);
     this.money.exitStandby(timer);
-    this.start();
+    if (timer.isPaused) {
+      this.display();
+    }
+    if (!timer.isPaused) {
+      this.start();
+    }
     timer.removeOnStandByAt();
     this.storage.saveTimer(Timer.clone(timer));
   }
