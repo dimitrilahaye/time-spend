@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.8](https://github.com/dimitrilahaye/time-spend/compare/v0.0.7...v0.0.8) (2025-01-03)
+
+
+### 📦 Refactor
+
+* **ui:** better dom logic encapsulation ([d56f59c](https://github.com/dimitrilahaye/time-spend/commit/d56f59c7c268b0492f352fbd4bd959dc594f89dc))
+
 ## [0.0.7](https://github.com/dimitrilahaye/time-spend/compare/v0.0.6...v0.0.7) (2025-01-03)
 
 
