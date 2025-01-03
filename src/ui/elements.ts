@@ -31,7 +31,7 @@ function getApp() {
             <nav class="navbar">
               <div class="navbar-brand">
                 <span class="navbar-item has-text-weight-bold">
-                  🕰️ time | $pend
+                  🕰️ time | pend
                 </span>
               </div>
             </nav>
@@ -194,56 +194,56 @@ function getFormInit() {
 function ui() {
   return {
     getAppElement: () => {
-      const $app = getApp();
-      return $app.element;
+      const app = getApp();
+      return app.element;
     },
     initAppDom: () => {
-      const $app = getApp();
-      $app.initDom();
+      const app = getApp();
+      app.initDom();
     },
     displayErrorMessage: (message: string) => {
-      const $errorMessage = getErrorMessage();
-      $errorMessage.displayMessage(message);
+      const errorMessage = getErrorMessage();
+      errorMessage.displayMessage(message);
     },
     setPlayerOnPause: () => {
-      const $controlButton = getControlButton();
-      const $timerDisplay = getTimerDisplay();
-      $controlButton.pause();
-      $timerDisplay.pause();
+      const controlButton = getControlButton();
+      const timerDisplay = getTimerDisplay();
+      controlButton.pause();
+      timerDisplay.pause();
     },
     setPlayerOnPlay: () => {
-      const $controlButton = getControlButton();
-      const $timerDisplay = getTimerDisplay();
-      $controlButton.play();
-      $timerDisplay.play();
+      const controlButton = getControlButton();
+      const timerDisplay = getTimerDisplay();
+      controlButton.play();
+      timerDisplay.play();
     },
     controlButtonClickHandler: (handler: () => void) => {
-      const $controlButton = getControlButton();
-      $controlButton.clickHandler(handler);
+      const controlButton = getControlButton();
+      controlButton.clickHandler(handler);
     },
     isPlayerOnPlay: () => {
-      const $controlButton = getControlButton();
-      return $controlButton.isPaused();
+      const controlButton = getControlButton();
+      return controlButton.isPaused();
     },
     isPlayerOnPause: () => {
-      const $controlButton = getControlButton();
-      return $controlButton.isPlayed();
+      const controlButton = getControlButton();
+      return controlButton.isPlayed();
     },
     setStopButtonClickHandler: (handler: () => void) => {
-      const $stop = getStop();
-      $stop.clickHandler(handler);
+      const stop = getStop();
+      stop.clickHandler(handler);
     },
     showTimerContainer: () => {
-      const $timerContainer = getTimerContainer();
-      $timerContainer.show();
+      const timerContainer = getTimerContainer();
+      timerContainer.show();
     },
     hideFormInit: () => {
-      const $formInit = getFormInit();
-      $formInit.hide();
+      const formInit = getFormInit();
+      formInit.hide();
     },
     formInitSubmitHandler: (handler: (e: Event) => void) => {
-      const $formInit = getFormInit();
-      $formInit.submitHandler(handler);
+      const formInit = getFormInit();
+      formInit.submitHandler(handler);
     },
     getAmountPerHourValue,
   };
