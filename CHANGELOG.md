@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.1](https://github.com/dimitrilahaye/time-spend/compare/v0.0.0...v0.0.1) (2025-01-03)
+
+
+### 🛠️ Maintenance
+
+* **npm:** remove temp option for release script ([5a9ba27](https://github.com/dimitrilahaye/time-spend/commit/5a9ba27b2946f28668f4dc20a291907355230657))
+
 ## 0.0.0 (2025-01-03)
 
 
