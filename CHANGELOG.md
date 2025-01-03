@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.12](https://github.com/dimitrilahaye/time-spend/compare/v0.0.11...v0.0.12) (2025-01-03)
+
+
+### ✨ Features
+
+* **ui:** add slide-up transitions on form and timer ([78d7250](https://github.com/dimitrilahaye/time-spend/commit/78d7250bebeae055580c60e8085633f908940ac1))
+
 ## [0.0.11](https://github.com/dimitrilahaye/time-spend/compare/v0.0.4...v0.0.11) (2025-01-03)
 
 
