@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.17](https://github.com/dimitrilahaye/time-spend/compare/v0.0.16...v0.0.17) (2025-02-08)
+
+
+### 🛠️ Maintenance
+
+* **deps:** update dependency typescript to ^5.7.3 ([#11](https://github.com/dimitrilahaye/time-spend/issues/11)) ([51b70a2](https://github.com/dimitrilahaye/time-spend/commit/51b70a21c68a6318fe7bc426bfd41d808c77662f))
+
 ## [0.0.16](https://github.com/dimitrilahaye/time-spend/compare/v0.0.15...v0.0.16) (2025-02-08)
 
 
