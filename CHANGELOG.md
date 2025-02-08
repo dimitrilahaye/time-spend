@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.16](https://github.com/dimitrilahaye/time-spend/compare/v0.0.15...v0.0.16) (2025-02-08)
+
+
+### 🛠️ Maintenance
+
+* **deps:** update dependency vite to ^6.0.11 ([#10](https://github.com/dimitrilahaye/time-spend/issues/10)) ([2c3a417](https://github.com/dimitrilahaye/time-spend/commit/2c3a4176ece539e3449a98f72fb2c9c5c07b419d))
+
 ## [0.0.15](https://github.com/dimitrilahaye/time-spend/compare/v0.0.14...v0.0.15) (2025-01-03)
 
 
